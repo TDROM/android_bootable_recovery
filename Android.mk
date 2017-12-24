@@ -43,7 +43,7 @@ TARGET_RECOVERY_GUI := true
 ifneq ($(TW_DEVICE_VERSION),)
     LOCAL_CFLAGS += -DTW_DEVICE_VERSION='"-$(TW_DEVICE_VERSION)"'
 else
-    LOCAL_CFLAGS += -DTW_DEVICE_VERSION='"-0"'
+    LOCAL_CFLAGS += -DTW_DEVICE_VERSION='"-0 Build date:20171225 Author:shuajizu.cn"'
 endif
 
 LOCAL_SRC_FILES := \
@@ -214,6 +214,10 @@ ifeq ($(BOARD_HAS_NO_REAL_SDCARD), true)
 endif
 ifneq ($(RECOVERY_SDCARD_ON_DATA),)
 	LOCAL_CFLAGS += -DRECOVERY_SDCARD_ON_DATA
+endif
+#Add fix nubia ota by cofface
+ifeq ($(BOARD_FIX_NUBIA_OTA),true)
+	LOCAL_CFLAGS += -DBOARD_FIX_NUBIA_OTA
 endif
 ifneq ($(TW_INCLUDE_DUMLOCK),)
 	LOCAL_CFLAGS += -DTW_INCLUDE_DUMLOCK
