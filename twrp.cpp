@@ -167,6 +167,7 @@ int main(int argc, char **argv) {
 		} else {
 			free(contexts);
 			gui_msg("full_selinux=Full SELinux support is present.");
+			gui_msg("shuajizu_modify=Modify by www.shuajizu.cn");
 		}
 	}
 
@@ -243,6 +244,19 @@ int main(int argc, char **argv) {
 					ptr = argptr + strlen("reason") + 1;
 					gui_print("%s\n", ptr);
 				}
+#ifdef BOARD_FIX_NUBIA_OTA
+			} else if (*argptr == 'f') {
+				LOGINFO("Add support nubia OTA by cofface@cofface.com.\n");
+
+				string ORSCommand = "install ";
+				if (TWFunc::Path_Exists("/data/dm/delta/system.delta")) {
+						ORSCommand.append("/data/dm/delta/system.delta");
+				} else if (TWFunc::Path_Exists("/data/data/cn.nubia.systemupdate/files/delta/system.delta")) {
+						ORSCommand.append("/data/data/cn.nubia.systemupdate/files/delta/system.delta");
+				}
+				if (!OpenRecoveryScript::Insert_ORS_Command(ORSCommand))
+					break;
+#endif
 			}
 		}
 		printf("\n");
