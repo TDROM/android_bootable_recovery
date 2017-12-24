@@ -111,6 +111,7 @@ const struct flag_list mount_flags[] = {
 	{ "shared",           MS_SHARED },
 #endif
 	{ "sync",             MS_SYNCHRONOUS },
+	{ "utf8",   0 },
 	{ 0,                  0 },
 };
 
